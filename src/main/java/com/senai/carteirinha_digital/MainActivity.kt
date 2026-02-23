@@ -19,6 +19,12 @@ import androidx.compose.ui.unit.dp
 import com.rafaelcosta.myapplication.QrCode
 import com.senai.carteirinha_digital.ui.theme.Carteirinha_digitalTheme
 
+/**
+ * The main entry point of the application.
+ *
+ * This activity is responsible for setting up the main UI of the application
+ * using Jetpack Compose. It displays a digital student ID card.
+ */
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,34 +40,48 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+/**
+ * Composable function representing the Digital Student ID (Carteirinha Digital) screen.
+ * This function displays a student's information including photo, personal details, and QR code.
+ *
+ * @param modifier The modifier to be applied to the layout
+ * @param function A callback function to be executed when certain actions occur
+ */
     @Composable
     fun Carteirinha_digitalApp(modifier: Modifier = Modifier, function: () -> Unit) {
 
+    // Column layout that fills the entire screen with padding and center alignment
         Column(
             modifier = modifier
-                .fillMaxSize()
-                .padding(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.SpaceEvenly
+                .fillMaxSize() // Makes the column occupy the entire available space
+                .padding(16.dp), // Adds 16dp padding around the content
+            horizontalAlignment = Alignment.CenterHorizontally, // Centers children horizontally
+            verticalArrangement = Arrangement.SpaceEvenly // Distributes children evenly vertically
         ) {
 
+        // Displays the Senai institution logo
             Image(
                 painter = painterResource(id = R.drawable.senai),
                 contentDescription = "Logo Senai"
             )
 
+        // Displays the student's profile photo with weight for sizing
             Image(
                 painter = painterResource(id = R.drawable.chico),
-                contentDescription = "Foto de Perfil",
-                modifier = Modifier.weight(0.3f)
+                contentDescription = "Foto de Perfil", // Profile photo description
+                modifier = Modifier.weight(0.3f) // Assigns 30% of the available vertical space
             )
 
-            Text(text = "Nome: Allan")
-            Text(text = "Curso: ADS")
-            Text(text = "Turma: 4° DEVSM")
-            Text(text = "Matrícula: 2026")
-            Text(text = "Data de Nascimento: 01/01/2001")
 
+
+        // Displays student information as text
+            Text(text = "Nome: Allan") // Student's name
+            Text(text = "Curso: ADS") // Course name
+            Text(text = "Turma: 4° DEVSM") // Class information
+            Text(text = "Matrícula: 2026") // Student ID
+            Text(text = "Data de Nascimento: 21/09/2005") // Date of birth
+
+        // Displays the QR code containing student identification number
             QrCode("90000000001382838830")
         }
     }
