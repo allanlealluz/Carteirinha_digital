@@ -7,13 +7,20 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.rafaelcosta.myapplication.QrCode
@@ -61,15 +68,24 @@ class MainActivity : ComponentActivity() {
 
         // Displays the Senai institution logo
             Image(
-                painter = painterResource(id = R.drawable.senai),
-                contentDescription = "Logo Senai"
+                painter = painterResource(id = R.drawable.logosenai),
+                contentDescription = "Logo Senai",
+                contentScale = ContentScale.Fit,
+                modifier = Modifier
+                    .weight(0.3f)
+                    .fillMaxWidth()
             )
 
         // Displays the student's profile photo with weight for sizing
             Image(
                 painter = painterResource(id = R.drawable.chico),
                 contentDescription = "Foto de Perfil", // Profile photo description
-                modifier = Modifier.weight(0.3f) // Assigns 30% of the available vertical space
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .weight(.2f)
+                    .size(200.dp)
+                    .clip(CircleShape)
+                    .aspectRatio(1f)
             )
 
 
